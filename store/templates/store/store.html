@@ -1,0 +1,69 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<main>
+
+    <form class="SearchOptions" action="" method="GET">
+        <div class="SearchOption">            
+            <label for="">Search By Category
+            </label>
+            <br>
+            {{ Filters.form.tags }}
+        </div>
+        
+        
+        <div class="SearchOption">
+            <label for="">Search By Name
+                
+            </label>
+            <br>
+            {{ Filters.form.name }}            
+        </div>                
+            
+            <div class="SearchOption">
+                <label for="">Search By Brand
+                    
+                </label>
+                <br>
+                {{ Filters.form.brands }}
+                
+            </div>                  
+            <div class="SearchOption">
+                <label for="">Search By Price Range
+                    
+                </label>
+                <br>
+                
+                {{ Filters.form.price }} 
+                
+            </div>                  
+      
+           
+            <div class="SearchOption">                    
+                
+                <button class="SearchOptions-Button" type="submit">
+                    <img class="SearchOptions-Button-image" width="20px" src="{% static '/images/icons/caret-right-4x.png' %}" alt="Search"></button>
+                </div>    
+    </form>
+    <hr>
+</main>
+    <div class="row">
+    {% for k in products %}
+    <div class="col-lg-4">
+    <img class="thumbnail" src="{{ k.imageURL }}"/>
+    <div class="box-element product">
+    <h6>
+        <strong>{{ k.name }}</strong>
+    </h5>
+    </h6>
+    <hr/>
+    <button data-product="{{ k.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">
+    Add to cart
+    </button>
+    <a class="btn btn-outline-success" href="{% url 'cart' %}">View</a>
+    <h4 style="display: inline-block; float: right;">${{ k.price }}</h4>
+    </div>
+    </div>
+    {% endfor %}
+    </div>
+    {% endblock content %}
